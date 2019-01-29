@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+  <h1>{{title}}</h1>
+
+  <h3>Employee</h3>
+  <hr />
+  <form [formGroup]="employeeForm" (ngSubmit)="save()" #formDir="ngForm" novalidate>
+    <div class="form-group row">
+      <label class=" control-label col-md-12" for="firstName">FirstName</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="firstName">
+      </div>
+      <!--<span class="text-danger" *ngIf="employeeForm.hasError('required', 'firstName') && formDir.submitted">
+        FirstName is required.
+      </span>-->
+    </div>
+    <div class="form-group row">
+      <label class=" control-label col-md-12" for="lastName">LastName</label>
+      <div class="col-md-4">
+        <input class="form-control" type="text" formControlName="lastName">
+      </div>
+      <!--<span class="text-danger" *ngIf="employeeForm.hasError('required', 'lastName') && formDir.submitted">
+        LastName is required.
+      </span>-->
+    </div>
+    <div class="form-group row">
+      <label class=" control-label col-md-12" for="email">Email</label>
+      <div class="col-md-4">
+        <input class="form-control" type="email" formControlName="email">
+      </div>
+      <span class="text-danger" *ngIf="employeeForm.hasError('required', 'email') && formDir.submitted">
+        Email is required.
+      </span>
+    </div>
+    <div class="form-group row">
+      <label class=" control-label col-md-12" for="customDate">joiningDate</label>
+      <div class="col-md-4">
+
+        <input type="date" class="form-control" id="joiningDate" name="joiningDate" formControlName="joiningDate" />
+      </div>
+      <span class="text-danger" *ngIf="employeeForm.hasError('required', 'customDate') && formDir.submitted">
+        JoiningDate is required.
+      </span>
+    </div>
+    <div class="form-group row">
+      <label class=" control-label col-md-12" for="isComfirm">IsConfirm</label>
+      <div class="col-md-4">
+        <input type="checkbox" formControlName="isComfirm">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label class="control-label col-md-12" for="Gender">Gender</label>
+      <span *ngFor="let gender of genders">
+
+        <input type="radio" name="gender" formControlName="gender"
+               [value]="gender.value">
+        {{gender.display}}
+
+      </span>
+
+      <span class="text-danger" *ngIf="employeeForm.hasError('required', 'gender') && formDir.submitted">
+        Gender is required
+      </span>
+    </div>
+
+    <div class="form-group">
+      <button type="submit" class="btn btn-default">Save</button>
+      <button class="btn" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</body>
+</html>

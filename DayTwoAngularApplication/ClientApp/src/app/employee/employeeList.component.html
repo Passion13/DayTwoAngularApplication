@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+  <h2>Employee List</h2>
+  <p *ngIf="!Employees">
+    No Records(s) found !
+  </p>
+  <p>
+    <a [routerLink]="['/addemployee']">Create New</a>
+  </p>
+  <div>
+    <table class="table table-responsive table-bordered" *ngIf="Employees && Employees.length">
+      <thead>
+        <tr>
+          <th>
+            FirstName
+          </th>
+          <th>
+            LastName
+          </th>
+          <th>Email</th>
+          <th>Joining Date</th>
+          <th>IsConfirm</th>
+          <th>Gender</th>
+          <th>Action</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let employee of Employees">
+          <td>{{employee.firstName}}</td>
+          <td>{{employee.lastName}}</td>
+          <td>{{employee.email}}</td>
+          <td>{{employee.joiningDate | date:'dd-MM-yyyy'}}</td>
+          <td>{{employee.isComfirm}}</td>
+          <td>{{employee.gender}}</td>
+          <td>
+            <a [routerLink]="['/employee/edit/',employee.employeeId]">Edit</a> |
+            <a [routerLink]="" (click)="deleteEmployee(employee.employeeId)">Delete</a>
+
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</body>
+</html>
